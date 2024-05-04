@@ -1,0 +1,6 @@
+{
+    "token": "1234",
+    "messages": [
+        {"role": "user", "content": "Hello there!"}
+    ]
+}
