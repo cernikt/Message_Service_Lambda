@@ -57,9 +57,9 @@ def message(event, context):
         # Make sure to hit guardrails lambda
         # checks = await check_guardrails(last_message)
         checks = {
-            'greetings': True,
+            'greetings': False,
             'restricted': False,
-            'questions': False,
+            'questions': True,
         }
         
         if checks['greetings'] == True:
@@ -84,10 +84,11 @@ def message(event, context):
             # context = await fetch_context(last_message)
             return process_message(json_data={
                 "model" : MODEL_NAME,
-                "prompt" : prompts_dict["question_answer_template"].replace('{INPUT}', last_message).replace('{CONTEXT}', context['context']),
+                "prompt" : prompts_dict["question_answer_template_2"].replace('{INPUT}', last_message).replace('{CONTEXT}', context['context']),
                 "stream" : False,
                 "max_tokens" : MAX_TOKENS,
-            }, sources=context['sources'])
+            })
+            # }, sources=context['sources'])
                 
         return {
             'statusCode': 200,
